@@ -1,2 +1,16 @@
-# Furina_Terminal
-专为低配手表开发的B站。A Bilibili developed specifically for low-end watches.
+# 水神终端（哔哩终端快应用版）
+
+#### 介绍
+专为低配手表开发的B站。
+
+#### 软件架构
+
+快应用
+
+#### 使用说明
+
+内置
+
+#### 参与贡献
+
+1.  哔哩终端开发者

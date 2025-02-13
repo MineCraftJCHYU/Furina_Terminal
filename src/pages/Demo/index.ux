@@ -1,0 +1,64 @@
+<template>
+  <!-- template里只能有一个根节点 -->
+  <div class="wrapper">
+    <text class="title">{{ displayTitle }}</text>
+  </div>
+</template>
+
+<script>
+import router from '@system.router'
+
+export default {
+  data: {
+    title: '欢迎使用\n水神终端',
+    displayTitle: '',
+    index: 0,
+    intervalId: null,
+    booted: false
+  },
+  onInit() {
+    this.startTypingEffect();
+  },
+  startTypingEffect() {
+    const fullTitle = this.title.split('');
+    this.intervalId = setInterval(() => {
+      if (this.index < fullTitle.length) {
+        // 添加新字并在其后添加下划线
+        this.displayTitle = this.displayTitle.slice(0, -1) + fullTitle[this.index] + '_';
+        this.index++;
+      } else {
+        // 清除定时器并移除最后的下划线
+        clearInterval(this.intervalId);
+        this.displayTitle = this.displayTitle.slice(0, -1);
+        setTimeout(() => {
+          if ( ! this.booted ) {
+            this.GoToTuiJian();
+            this.booted = true;
+          }
+        }, 100);
+      }
+    }, 100);
+  },
+  GoToTuiJian() {
+    router.replace({
+      uri: '/pages/TuiJian',
+    });
+  }
+}
+</script>
+
+<style lang="less">
+@import './../../assets/styles/style.less';
+
+.wrapper {
+  background-color: #000000;
+  .flex-box-mixins(column, center, center);
+  .title {
+    font-size: 8 * @size-factor;
+    text-align: center;
+    color: @black;
+    font-family: "楷体";
+    color: #ffffff;
+  }
+}
+</style>
